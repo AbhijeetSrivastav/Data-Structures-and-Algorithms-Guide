@@ -1,8 +1,6 @@
 # Singly Linked List
 
-from json.tool import main
-from tkinter.messagebox import NO
-from tkinter.tix import MAIN
+from msilib.schema import Error
 
 
 class Node:
@@ -14,9 +12,10 @@ class SinglyLinkedList:
     def __init__(self) -> object:
         self.head = None
     
+    
     def visuzlizelist(self):
         if self.head is None:
-            print('Linked List is Empty!')
+            raise Exception('List is Empty!')
         else:
             currentNode = self.head
             ll = ""
@@ -62,7 +61,7 @@ class SinglyLinkedList:
 
     def insertAtPosition(self, data, position: int):
         if position < 0 or position > self.listLength():
-            print('Invalid Position!')
+            raise Exception('Invalid Position!')
         elif position == 0:
             self.insertAtBegining(data)
         elif position == self.listLength():
@@ -73,28 +72,48 @@ class SinglyLinkedList:
             count = 0
 
             while currentNode.next is not None:
-                count += 1
-                currentNode = currentNode.next
-                
                 if count == position - 1:
                     newNode.next = currentNode.next
                     currentNode.next = newNode
+                
+                count += 1
+                currentNode = currentNode.next
 
-
+    def deleteFromBegining(self):
+        if self.head is None:
+           raise Exception('List is Empty!')
+        else:
+            self.head = self.head.next 
+    
+    def deleteFromEnd(self):
+        if self.head is None:
+            raise Exception('List is Empty!')
+        else:
+            currentNode = self.head
+            previousNode = self.head
+            while currentNode.next is not None:
+                previousNode = currentNode
+                currentNode = currentNode.next
             
+            previousNode.next = None
 
+    def deletefromPosition(self, position):
+        if position < 0 or position > self.listLength():
+           raise Exception('Invalid Position!')      
+        elif position == 0:
+            self.deleteFromBegining()
+        elif position == self.listLength():
+            self.deleteFromEnd()
+        else:
+            count = 0
+            currentNode = self.head
 
-if __name__ == "__main__":
-    l = SinglyLinkedList()
-    
-    l.insertAtBegining(data=20)
-    l.insertAtBegining(data=30)
-    l.insertAtBegining(data=40)
-    l.insertAtBegining(data=50)
-    l.insertAtEnd(data=100)
-    l.insertAtEnd(data=60)
+            while currentNode.next is not None:
+                if count == position - 1:
+                    currentNode.next = currentNode.next.next
+                    break
 
-    l.insertAtPosition(data=99, position=2)
-    
+                count += 1
+                currentNode = currentNode.next 
 
-    l.visuzlizelist()
+                
