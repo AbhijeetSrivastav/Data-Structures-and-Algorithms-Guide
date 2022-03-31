@@ -1,7 +1,5 @@
 # Singly Linked List
 
-from msilib.schema import Error
-
 
 class Node:
     def __init__(self, data, next) -> object:
@@ -82,12 +80,16 @@ class SinglyLinkedList:
     def deleteFromBegining(self):
         if self.head is None:
            raise Exception('List is Empty!')
+        elif self.head.next is None:
+            self.head = None
         else:
             self.head = self.head.next 
     
     def deleteFromEnd(self):
         if self.head is None:
             raise Exception('List is Empty!')
+        elif self.head.next is None:
+            self.head = None
         else:
             currentNode = self.head
             previousNode = self.head
