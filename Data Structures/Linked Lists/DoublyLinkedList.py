@@ -83,15 +83,44 @@ class DoublyLinkedList:
                 
                 count += 1
                 currentNode = currentNode.next
-if __name__ == "__main__":
-    l = DoublyLinkedList()
 
-    l.insertAtBegining(data=20)
-    l.insertAtBegining(data=30)
-    l.insertAtEnd(data=100)
-    l.insertAtEnd(data=1050)
-    l.insertAtPosition(data=26, position=3)
+    def deleteFromBegining(self):
+        if self.head is None:
+            raise Exception('List is Empty!')
+        elif self.head.next is None:
+            self.head = None
+        else:
+            self.head = self.head.next
+            self.head.prev = None
 
+    def deleteFromEnd(self):
+        if self.head is None:
+            raise Exception('List is Empty!')
+        elif self.head.next is None:
+            self.head = None
+        else:
+            currentNode = self.head
 
+            while currentNode.next is not None:
+                currentNode = currentNode.next
+            
+            currentNode.prev.next = None
 
-    l.visuzlizelist()
+    def deleteFromPositon(self, position):
+        if position < 0 or position > self.listLength():
+            raise Exception('Invalid Positon!')
+        elif position == 0:
+            self.deleteFromBegining()
+        elif position == self.listLength():
+            self.deleteFromEnd()
+        else:
+            count = 0
+            currentNode = self.head
+
+            while currentNode.next is not None:
+                if count == position - 1:
+                    currentNode.next = currentNode.next.next
+                    currentNode.next.prev = currentNode
+                
+                count +=1
+                currentNode = currentNode.next
