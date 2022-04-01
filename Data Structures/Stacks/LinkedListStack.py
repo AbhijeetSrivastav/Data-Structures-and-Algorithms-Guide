@@ -1,8 +1,6 @@
 # Linked List Stack
 
 
-from dataclasses import dataclass
-
 
 class Node:
     def __init__(self, data, next) -> object:
@@ -12,6 +10,7 @@ class Node:
 class Stack:
     def __init__(self) -> object:
         self.head = None
+
 
     def sizeOfStack(self):
         if self.head is None:
@@ -63,18 +62,3 @@ class Stack:
             temp = self.head.data
             self.head = self.head.next
             return temp
-
-if __name__ == "__main__":
-    s = Stack()
-    s.push(data=10)
-    s.push(data=100)
-    s.push(data=10056)
-    s.push(data=100657)
-    s.push(data=1003)
-    s.push(data=1050)
-    s.push(data=110201)
-    print(s.peek())
-    print(s.pop())
-    s.visualizeStack()
-
-    
