@@ -39,7 +39,7 @@ class CicularArrayQueue:
         if self.front == -1:
             raise Exception('Queue Underflow!')
         elif self.front == self.rear:
-            self.head = -1
-            self.tail = -1
+            self.front = -1
+            self.rear = -1
         else:
             self.front = (self.front + 1) % self.size
