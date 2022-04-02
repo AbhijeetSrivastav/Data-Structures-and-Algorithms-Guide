@@ -51,15 +51,3 @@ class LinearArrayQueue_TYPE2:
     
     def rear(self):
         return self.queue[-1]
-
-if __name__ == "__main__":
-    q = LinearArrayQueue_TYPE2()
-
-    q.enqueue(20)
-    q.enqueue(200)
-    q.enqueue(2000)
-    q.enqueue(20000)
-    print(q.front())
-    print(q.rear())
-
-    q.visualizeQueue()
