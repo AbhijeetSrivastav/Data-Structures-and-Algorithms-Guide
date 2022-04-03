@@ -2,10 +2,6 @@
 
 
 
-
-from turtle import left
-
-
 class BinarySearchTreeNode:
     def __init__(self, data):
         self.data = data
@@ -147,6 +143,55 @@ class BinarySearchTreeNode:
         left_sum = self.left.sumNode() if self.left else 0
         right_sum = self.right.sumNode() if self.right else 0
         return self.data + left_sum + right_sum       
+    
+    def delete(self, value):
+        # traverse to the node which has to be deleted
+        if value < self.data:
+            # then value maybe in left subtree
+            if self.left:
+                # in left subtree if current node is not leaf node
+                # recursively call delete method to reach the node and update the left subtree with new one which is basically subtree without current node
+                # else it will return NONE by default
+                self.left = self.left.delete(value)
+        elif value > self.data:
+            # then value maybe in right subtree
+            if self.right:
+                # in right subtree if current node is not leaf node
+                # recursively call delete method to reach the leaf node and update the right subtree with new one which is basically subtree without current node
+                # else it will return NONE by default
+                self.right = self.right.delete(value)
+        else:
+            # Case 1: We have no child of node to be deleted
+            if self.left is None and self.right is None:
+                # node to be delted is leaf node
+                # thus return None for it
+                return None
+            
+            # Case 2: We have one child of node to be delted
+            elif  self.left is None:
+                # if the node to be delted has no left subtree and has only right subtree
+                # then return the only child of that node from right subtree 
+                # which will replace the node to be delted
+                return self.right
+
+            elif self.right is None: 
+                # if the node to be deleted has no right subtree and has only left subtree
+                # then return the only child of that node from right subtree
+                # which will replace the node to be deleted
+                return self.left
+
+            # Case 3: We have two child of node to be deleted
+            min_value = self.right.minNode()  # copy minimum value from right subtree
+            self.data = min_value   # update the value of the node to be deleted(current node) with the min value 
+            self.right = self.right.delete(min_value) # delete node with min value as node to be delted is updated with min node
+
+            """Alternate method:  
+                max_value = self.right.minNode()  # copy max value from left subtree
+                self.data = max_value   # update the value of the node to be deleted(current node) with the max value 
+                self.left = self.left.delete(max_value) # delete node with min value as node to be delted is updated with max node"""
+        
+        return self
+
 
 def buildBinarySearchTree(elements):
     root = BinarySearchTreeNode(elements[0])
@@ -155,19 +200,3 @@ def buildBinarySearchTree(elements):
         root.addChild(elements[element])
 
     return root
-    
-if __name__ == "__main__":
-    # countries = ["India","Pakistan","Germany", "USA","China","India","UK","USA"]
-    # country_tree = buildBinarySearchTree(countries)
-
-    # print("UK is in the list? ", country_tree.searchValue("UK"))
-    # print("Sweden is in the list? ", country_tree.searchValue("Sweden"))
-
-    numbers_tree = buildBinarySearchTree([17, 4, 1, 20, 9, 23, 18, 34])
-    print("In order traversal gives this sorted list:",numbers_tree.inOrderTraversal())
-    print("Post order traversal gives this sorted list:",numbers_tree.postOrderTraversal())   
-    print("Pre order traversal gives this sorted list:",numbers_tree.preOrderTraversal())
-    print(numbers_tree.maxNode())
-    print(numbers_tree.minNode())
-    print(numbers_tree.sumNode())
-    
