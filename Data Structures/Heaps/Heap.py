@@ -1,13 +1,10 @@
-# Binary Heap - Priority Queue
+# Binary Heap - Priority Queue (Here we have implented ascending one)
 
-
-from multiprocessing.sharedctypes import Value
-from operator import index
 
 
 class BinaryHeap:
     def __init__(self) -> object:
-        self.heap = []
+        self.heap = [0]
         self.size = 0
 
 
@@ -43,6 +40,7 @@ class BinaryHeap:
         if self.size == 0:
             raise Exception('Heap is Empty!')
         return self.heap[1]
+    
     
     def percolateDown(self, index):
         # heapifying from root to bottom
@@ -88,4 +86,13 @@ class BinaryHeap:
         self.heap.pop()
         self.percolateDown(1)
         return root
+    
+    def buildHeap(self, keys:list):
+        # build a heap from list of keys
+        index = len(keys) // 2
+        self.size = len(keys)
+        self.heap = [0] + keys[:]
+        while index > 0:
+            self.percolateDown(index)
+            index -= 1
     
