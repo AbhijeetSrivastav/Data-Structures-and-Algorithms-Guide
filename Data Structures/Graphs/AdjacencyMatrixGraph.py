@@ -97,15 +97,3 @@ class DirectedGraph:
         return DataFrame(self.AdjMatrix) 
 
 
-        
-
-if __name__ == "__main__":
-    g = UnDirectedGraph(5)
-    g.AddEdge(1,5, weight=22)
-    g.isAdjacent(1,5)
-    print(g.VisualizeGraphMatrix())
-
-   
-
-
-  
