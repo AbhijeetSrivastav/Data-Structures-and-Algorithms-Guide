@@ -2,7 +2,7 @@
 
 
 
-def BubbleSort(array:list):
+def BubbleSort(array:list)->list:
     for j in range(len(array)):
         # looping to acess each element of the array
         for i in range(0, len(array) - 1):
@@ -12,7 +12,7 @@ def BubbleSort(array:list):
     return array
 
 
-def OptimizedBubbleSort(array:list):
+def OptimizedBubbleSort(array:list)->list:
     for j in range(len(array)):
         # looping to acess each element of the array
 
