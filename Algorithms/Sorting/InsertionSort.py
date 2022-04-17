@@ -2,10 +2,7 @@
 
 
 
-from array import array
-
-
-def InsertionSort(array:list)->array:
+def InsertionSort(array:list)->list:
     for i in range(1, len(array)):
         # looping over whole array to get the anchor at each iteration 
         anchor = array[i]
