@@ -28,8 +28,4 @@ def ShellSort(array:list)->list:
         # reduce the gap for next pass
         gap = gap // 2
 
-    return array  
-
-
-a = [2,6,7,4,8,9,0]
-print(ShellSort(a))
+    return array
