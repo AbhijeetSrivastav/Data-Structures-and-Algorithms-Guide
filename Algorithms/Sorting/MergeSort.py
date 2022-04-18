@@ -4,7 +4,7 @@
 
 def MergeSort(array)->list:
     # dividing the array into two unsorted array from mid until no element remain in array
-    # namel leftHalf and rightHalf
+    # named as leftHalf and rightHalf
     if len(array) > 1:
         "Divide"
         mid = len(array) // 2
