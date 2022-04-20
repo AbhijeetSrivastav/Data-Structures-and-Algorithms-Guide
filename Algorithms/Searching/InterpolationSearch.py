@@ -7,6 +7,7 @@ def InterpolationSearch(array:list, searchForValue:int)->int:
     high = len(array) - 1
 
     while array[low] <= searchForValue  <= array[high]:
+        # formula for interpolation point
         mid = (low + (searchForValue - array[low]) * (high - low)) // (array[high] - array[low])
 
         if array[mid] > searchForValue:
