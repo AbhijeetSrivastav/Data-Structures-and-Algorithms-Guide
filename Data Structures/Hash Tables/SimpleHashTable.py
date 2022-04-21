@@ -52,13 +52,12 @@ class HashTable:
     def __init__(self) -> None:
         self.MAX = 256
 
-        # empty hash table wit None value
+        # empty hash table with None value
         self.array = [None for i in range(self.MAX)]
 
 
     def getHash(self, key: str)->int:
-        # Generate hash value for given value
-        # or maps value to index
+        # Generate hash value for given value or maps value to index
         # hash = sum of the ASCII values of each char of key divided by the size of the hash table
         # ord is method to get ASCII value for a charachter
         hash = 0
