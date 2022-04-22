@@ -32,6 +32,7 @@ class HashTable:
             # rehash using the quadratic probe
             # rehash(key) = (hash + k^2) % size_of_table    
             h = (h + pow(k, 2)) % self.MAX
+            k += 1
         self.array[h] = value
 
     def __getitem__(self, key:str):
