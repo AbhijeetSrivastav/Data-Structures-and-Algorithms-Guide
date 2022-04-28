@@ -4,7 +4,7 @@
 
 class Node:
     def __init__(self):
-        # data will stored as key (charachters of text)
+        # data will stored as key (characters of text)
         # next node pointer will be stored as value of that key
         self.children = {}
         self.endofText = False
@@ -20,14 +20,14 @@ class Trie:
         # point to the root node
         ptr = self.root
 
-        # for each charachter of text
+        # for each character of text
         for character in text:
             if character not in ptr.children:
-                # if charachter not in children dictionary of current pointed node
-                # insert that charachter and point it to new node
+                # if character not in children dictionary of current pointed node
+                # insert that character and point it to new node
                 ptr.children[character] = Node()
             
-            # if charachter in children dictionary of current pointed node
+            # if character in children dictionary of current pointed node
             # move the pointer to that node
             ptr = ptr.children[character]
         
@@ -39,15 +39,15 @@ class Trie:
         # point to the root node
         ptr = self.root
 
-        # for each charachter of text
-        for charachter in text:
-            # if charachter not in children dictionary of current pointed node
-            # thus no text with this starting charachter exist
-            if charachter not in ptr.children:
+        # for each character of text
+        for character in text:
+            # if character not in children dictionary of current pointed node
+            # thus no text with this starting character exist
+            if character not in ptr.children:
                 return False
 
             # move the pointer to that node
-            ptr = ptr.children[charachter]
+            ptr = ptr.children[character]
 
         # is it end of the text ?
         if ptr.endofText:
@@ -59,14 +59,14 @@ class Trie:
         # point to the root node
         ptr = self.root
 
-        # for each charachter of text
-        for charchter in text:
-            # if charachter not in children dictionary of current pointed node
-            # thus no text with this starting charachter exist
-            if charchter not in ptr.children:
+        # for each character of text
+        for character in text:
+            # if character not in children dictionary of current pointed node
+            # thus no text with this starting character exist
+            if character not in ptr.children:
                 return False
             # move the pointer to that node
-            ptr = ptr.children[charchter]
+            ptr = ptr.children[character]
 
         # if exist return true
         return True
